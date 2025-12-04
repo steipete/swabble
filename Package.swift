@@ -8,6 +8,7 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../Peekaboo/Commander"),
+        .package(url: "https://github.com/apple/swift-testing", from: "0.99.0"),
     ],
     targets: [
         .executableTarget(
@@ -18,7 +19,10 @@ let package = Package(
             path: "Sources"),
         .testTarget(
             name: "swabbleTests",
-            dependencies: ["swabble"]),
+            dependencies: [
+                "swabble",
+                .product(name: "Testing", package: "swift-testing"),
+            ]),
     ],
     swiftLanguageModes: [.v6]
 )
